@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: alonso.decosio
+Build-Jdk: 12.0.2
+Implementation-Title: poc-lab-fp
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.alonso
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-boot
+ -starter-parent/poc-lab-fp
+Created-By: Maven Integration for Eclipse
+

@@ -1,0 +1,15 @@
+/Users/alonso.decosio/eclipse-workspace/poc-lab-fp/src/main/java/com/alonso/aspect/DemoAspect.java
+/Users/alonso.decosio/eclipse-workspace/poc-lab-fp/src/main/java/com/alonso/controller/HomeController.java
+/Users/alonso.decosio/eclipse-workspace/poc-lab-fp/src/main/java/com/alonso/controller/MongoController.java
+/Users/alonso.decosio/eclipse-workspace/poc-lab-fp/src/main/java/com/alonso/service/KafkaConsumer.java
+/Users/alonso.decosio/eclipse-workspace/poc-lab-fp/src/main/java/com/alonso/model/Book.java
+/Users/alonso.decosio/eclipse-workspace/poc-lab-fp/src/main/java/com/alonso/repository/ProcessResultRepository.java
+/Users/alonso.decosio/eclipse-workspace/poc-lab-fp/src/main/java/com/alonso/repository/RawResultRepository.java
+/Users/alonso.decosio/eclipse-workspace/poc-lab-fp/src/main/java/com/alonso/service/KafkaSender.java
+/Users/alonso.decosio/eclipse-workspace/poc-lab-fp/src/main/java/com/alonso/tasks/SendMessageTask.java
+/Users/alonso.decosio/eclipse-workspace/poc-lab-fp/src/main/java/com/alonso/repository/BookRepository.java
+/Users/alonso.decosio/eclipse-workspace/poc-lab-fp/src/main/java/com/alonso/repository/PiceRepository.java
+/Users/alonso.decosio/eclipse-workspace/poc-lab-fp/src/main/java/com/alonso/model/RawResult.java
+/Users/alonso.decosio/eclipse-workspace/poc-lab-fp/src/main/java/com/alonso/model/ProcessResult.java
+/Users/alonso.decosio/eclipse-workspace/poc-lab-fp/src/main/java/com/alonso/SampleMain.java
+/Users/alonso.decosio/eclipse-workspace/poc-lab-fp/src/main/java/com/alonso/model/Price.java

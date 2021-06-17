@@ -1,0 +1,6 @@
+From tomcat:8.5.64-jdk11-corretto
+RUN rm -rf /usr/local/tomcat/webapps/*
+COPY ./target/poc-lab-cp-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/ROOT.war
+COPY --from=bab85675.sprint.dynatracelabs.com/linux/oneagent-codemodules:all / /
+ENV LD_PRELOAD /opt/dynatrace/oneagent/agent/lib64/liboneagentproc.so
+CMD ["catalina.sh","run"]

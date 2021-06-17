@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: mongo
+  name: mongo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongo
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: mongo
+    spec:
+      containers:
+      - image: mongo
+        name: mongo
+        env:
+        - name: MONGO_INITDB_ROOT_USERNAME
+          value: dynatrace
+        - name: MONGO_INITDB_ROOT_PASSWORD
+          value: dynatrace2021
+        ports:
+        - containerPort: 27017
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: mongo
+  name: mongo-ext-letschat
+spec:
+  type: LoadBalancer
+  selector:
+    app: mongo
+  ports:
+  - protocol: TCP
+    port: 27017
+status:
+  loadBalancer: {}

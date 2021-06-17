@@ -1,0 +1,88 @@
+# Create Mongo
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: mongo
+  name: mongo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongo
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: mongo
+    spec:
+      containers:
+      - image: mongo
+        name: mongo
+        ports:
+        - containerPort: 27017
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: mongo
+  name: mongo
+spec:
+  type: ClusterIP
+  selector:
+    app: mongo
+  ports:
+  - protocol: TCP
+    port: 27017
+    targetPort: 27017
+status:
+  loadBalancer: {}
+# Create NodeJS
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: lets-chat
+  name: lets-chat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lets-chat
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: lets-chat
+    spec:
+      containers:
+      - image: alonsodecosio/lets-chat
+        name: lets-chat
+        ports:
+        - containerPort: 8080
+        - containerPort: 5222
+        resources: 
+          limits: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: lets-chat
+  name: lets-chat-ext
+spec:
+  type: LoadBalancer
+  selector:
+    app: lets-chat
+  ports:
+  - protocol: TCP
+    port: 8080
+status:
+  loadBalancer: {}

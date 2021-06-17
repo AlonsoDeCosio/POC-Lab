@@ -1,0 +1,151 @@
+# create Mongo database and services
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: mongo
+  name: mongo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongo
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: mongo
+      annotations:
+        metrics.dynatrace.com/scrape: 'true'
+        metrics.dynatrace.com/port: '9090'
+    spec:
+      containers:
+      - image: mongo
+        name: mongo
+        ports:
+        - containerPort: 27017
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: mongo
+  name: mongo-ext
+  annotations:
+    metrics.dynatrace.com/scrape: 'true'
+    metrics.dynatrace.com/port: '9090'
+spec:
+  type: LoadBalancer
+  selector:
+    app: mongo
+  ports:
+  - protocol: TCP
+    port: 27017
+    targetPort: 27017
+    nodePort: 32000
+status:
+  loadBalancer: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: mongo
+  name: mongo
+  annotations:
+    metrics.dynatrace.com/scrape: 'true'
+    metrics.dynatrace.com/port: '9090'
+spec:
+  type: ClusterIP
+  selector:
+    app: mongo
+  ports:
+  - protocol: TCP
+    port: 27017
+    targetPort: 27017
+status:
+  loadBalancer: {}
+# create de consumers  
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: poc-lab-cm
+  name: poc-lab-cm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: poc-lab-cm
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: poc-lab-cm
+      annotations:
+        metrics.dynatrace.com/scrape: 'true'
+        metrics.dynatrace.com/port: '9090'
+    spec:
+      containers:
+      - image: alonsodecosio/poc-lab-cm
+        name: poc-lab-cm
+        resources:
+          limits: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: poc-lab-cp
+  name: poc-lab-cp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: poc-lab-cp
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: poc-lab-cp
+      annotations:
+        metrics.dynatrace.com/scrape: 'true'
+        metrics.dynatrace.com/port: '9090'
+    spec:
+      containers:
+      - image: alonsodecosio/poc-lab-cp
+        name: poc-lab-cp
+        resources:
+          limits: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: poc-lab-fp
+  name: poc-lab-fp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: poc-lab-fp
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: poc-lab-fp
+      annotations:
+        metrics.dynatrace.com/scrape: 'true'
+        metrics.dynatrace.com/port: '9090'
+    spec:
+      containers:
+      - image: alonsodecosio/poc-lab-fp
+        name: poc-lab-fp
+        resources:
+          limits: {}

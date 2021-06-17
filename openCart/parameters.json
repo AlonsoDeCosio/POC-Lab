@@ -1,0 +1,100 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "value": "eastus"
+        },
+        "networkInterfaceName": {
+            "value": "poc-lab-1664"
+        },
+        "networkSecurityGroupName": {
+            "value": "poc-lab-1-nsg"
+        },
+        "networkSecurityGroupRules": {
+            "value": [
+                {
+                    "name": "HTTP",
+                    "properties": {
+                        "priority": 1010,
+                        "protocol": "TCP",
+                        "access": "Allow",
+                        "direction": "Inbound",
+                        "sourceApplicationSecurityGroups": [],
+                        "destinationApplicationSecurityGroups": [],
+                        "sourceAddressPrefix": "*",
+                        "sourcePortRange": "*",
+                        "destinationAddressPrefix": "*",
+                        "destinationPortRange": "80"
+                    }
+                },
+                {
+                    "name": "HTTPS",
+                    "properties": {
+                        "priority": 1020,
+                        "protocol": "TCP",
+                        "access": "Allow",
+                        "direction": "Inbound",
+                        "sourceApplicationSecurityGroups": [],
+                        "destinationApplicationSecurityGroups": [],
+                        "sourceAddressPrefix": "*",
+                        "sourcePortRange": "*",
+                        "destinationAddressPrefix": "*",
+                        "destinationPortRange": "443"
+                    }
+                },
+                {
+                    "name": "SSH",
+                    "properties": {
+                        "priority": 1030,
+                        "protocol": "TCP",
+                        "access": "Allow",
+                        "direction": "Inbound",
+                        "sourceApplicationSecurityGroups": [],
+                        "destinationApplicationSecurityGroups": [],
+                        "sourceAddressPrefix": "*",
+                        "sourcePortRange": "*",
+                        "destinationAddressPrefix": "*",
+                        "destinationPortRange": "22"
+                    }
+                }
+            ]
+        },
+        "subnetName": {
+            "value": "default"
+        },
+        "virtualNetworkId": {
+            "value": "/subscriptions/0c164bb6-0b03-4ede-9b9f-372cef0f5a92/resourceGroups/alonso-rg/providers/Microsoft.Network/virtualNetworks/alonso-rg-vnet"
+        },
+        "publicIpAddressName": {
+            "value": "poc-lab-1-ip"
+        },
+        "publicIpAddressType": {
+            "value": "Dynamic"
+        },
+        "publicIpAddressSku": {
+            "value": "Basic"
+        },
+        "virtualMachineName": {
+            "value": "poc-lab-1"
+        },
+        "virtualMachineComputerName": {
+            "value": "poc-lab-1"
+        },
+        "virtualMachineRG": {
+            "value": "alonso-rg"
+        },
+        "osDiskType": {
+            "value": "Standard_LRS"
+        },
+        "virtualMachineSize": {
+            "value": "Standard_B2s"
+        },
+        "adminUsername": {
+            "value": "dynatrace"
+        },
+        "adminPassword": {
+            "value": "dynatrace2021!"
+        }
+    }
+}

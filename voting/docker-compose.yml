@@ -1,0 +1,28 @@
+version: "3"
+services:
+  vote:
+    image: alonsodecosio/poc-lab-voting-app
+    command: python app.py
+    ports:
+      - "5000:80"
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+
+  worker:
+    image: alonsodecosio/poc-lab-worker-app
+
+  db:
+    image: postgres:9.4
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+
+  result:
+    image: alonsodecosio/poc-lab-result-app
+    command: nodemon server.js
+    ports:
+      - "5001:80"
+      - "5858:5858"
